@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AmplitudoAkademija</string>
+    <string name="be_aware">Be aware\nStay healthy</string>
+    <string name="welcome">Welcome to COVID-19 information portal.</string>
+    <string name="get_started">Get Started</string>
+    <string name="safety_tips">Know safety tips and precautions from top Doctors.</string>
+    <string name="tracker">Tracker</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="worldwide">Worldwide</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="active">Active</string>
+    <string name="recovered">Recovered</string>
+    <string name="deceased">Deceased</string>
+    <string name="spread_trends">Spread Trends</string>
+</resources>

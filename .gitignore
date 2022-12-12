@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Application build files
 *.apk
 *.aar
@@ -71,3 +72,20 @@ lint/tmp/
 
 # ReadMe file
 README.md
+=======
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+>>>>>>> 733cd8b (inital commit)
