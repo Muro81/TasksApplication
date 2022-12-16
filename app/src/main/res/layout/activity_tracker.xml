@@ -4,6 +4,236 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="15dp"
     tools:context=".TrackerActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/user_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:src="@drawable/user_image" />
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/country_bg"
+        android:layout_width="66dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_bg_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/country_flag"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="5dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/country_bg"
+        app:layout_constraintStart_toStartOf="@+id/country_bg"
+        app:layout_constraintTop_toTopOf="@+id/country_bg">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:src="@drawable/country_flag" />
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/ic_arrow_down"
+        android:layout_width="14dp"
+        android:layout_height="9dp"
+        android:layout_marginEnd="5dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow_down"
+        app:layout_constraintBottom_toBottomOf="@+id/country_bg"
+        app:layout_constraintEnd_toEndOf="@+id/country_bg"
+        app:layout_constraintTop_toTopOf="@+id/country_bg" />
+
+    <View
+        android:id="@+id/safety_tips_bg"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_bg_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/country_bg" />
+
+    <ImageView
+        android:id="@+id/doctor_illustration"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@null"
+        android:src="@drawable/doctor_illustration"
+        app:layout_constraintBottom_toBottomOf="@+id/safety_tips_bg"
+        app:layout_constraintStart_toStartOf="@+id/safety_tips_bg" />
+
+    <TextView
+        android:id="@+id/safety_tips_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/safety_tips"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/safety_tips_bg"
+        app:layout_constraintStart_toEndOf="@+id/doctor_illustration"
+        app:layout_constraintTop_toTopOf="@+id/safety_tips_bg" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/safety_tips_bg"
+        app:layout_constraintStart_toStartOf="@+id/safety_tips_txt"
+        app:layout_constraintTop_toBottomOf="@+id/safety_tips_txt">
+
+        <ImageButton
+            android:id="@+id/next_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_arrow_forward" />
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/tab_bar_bg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_bg_brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/safety_tips_bg" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tracker_bg"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="5dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="5dp"
+        app:layout_constraintStart_toStartOf="@+id/tab_bar_bg"
+        app:layout_constraintTop_toTopOf="@+id/tab_bar_bg">
+
+        <TextView
+            android:id="@+id/tracker_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/tracker"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/symptoms_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/symptoms"
+        android:textColor="@color/lightBrown"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tab_bar_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tracker_bg"
+        app:layout_constraintTop_toTopOf="@+id/tab_bar_bg" />
+
+    <TextView
+        android:id="@+id/country_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/country"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_bar_bg"/>
+    <TextView
+        android:id="@+id/state_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/state"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="25dp"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/country_txt"
+        app:layout_constraintTop_toBottomOf="@id/tab_bar_bg"
+        />
+    <TextView
+        android:id="@+id/city_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/city"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="25dp"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/state_txt"
+        app:layout_constraintTop_toBottomOf="@id/tab_bar_bg"
+        />
+
+    <TextView
+        android:id="@+id/worldwide_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/worldwide"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="25dp"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/city_txt"
+        app:layout_constraintTop_toBottomOf="@id/tab_bar_bg"
+        />
+
+    <View
+        android:id="@+id/confirmed_bg"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_bg_red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/country_txt" />
+
+    <TextView
+        android:id="@+id/confirmed_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmed"
+        android:textColor="@color/red"
+        android:textSize="17sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/confirmed_bg"/>
+
+    <TextView
+        android:id="@+id/confirmed_numbers_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="2,37,395"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/red"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/confirmed_bg"
+        app:layout_constraintEnd_toEndOf="@+id/confirmed_bg" />
 </androidx.constraintlayout.widget.ConstraintLayout>

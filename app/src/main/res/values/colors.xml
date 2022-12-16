@@ -12,9 +12,13 @@
     <color name="purple">#FF9156EC</color>
     <color name="light_blue">#FF99D3FF</color>
     <color name="brown">#FFE2ACAB</color>
+    <color name="lightBrown">#FFA74813</color>
     <color name="red">#FFFC1441</color>
+    <color name="redTransparent">#80FC1441</color>
     <color name="blue">#80157FFB</color>
     <color name="green">#FF30A64A</color>
+    <color name="greenTransparent">#8030A64A</color>
     <color name="gray">#FF6D757D</color>
+    <color name="lightGray">#FFCBC1DB</color>
     <color name="transparent">#00000000</color>
 </resources>
