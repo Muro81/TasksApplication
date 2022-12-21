@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import llc.amplitudo.amplitudo_akademija.databinding.FragmentGetStartedBinding
 
 class GetStartedFragment : Fragment() {
+
+    private var _binding: FragmentGetStartedBinding? = null
+    private val binding: FragmentGetStartedBinding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,8 +19,20 @@ class GetStartedFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_get_started, container, false)
+    ): View {
+        _binding = FragmentGetStartedBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        clearBinding()
+    }
+
+    /**
+     * [See](https://stackoverflow.com/questions/66119231/is-it-necessary-to-set-viewbinding-to-null-in-fragments-ondestroy)
+     */
+    private fun clearBinding() {
+        _binding = null
     }
 }
