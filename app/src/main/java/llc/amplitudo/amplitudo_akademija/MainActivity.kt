@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         binding.apply {
             getStartedButton.setOnClickListener {
-                navigateToTrackerActivity()
+
             }
         }
         Timber.d("Activity is starting...")
@@ -55,11 +55,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Timber.d("Activity is being destroyed...")
-    }
-
-    private fun navigateToTrackerActivity() {
-        val intent = Intent(this@MainActivity, TrackerActivity::class.java)
-        startActivity(intent)
     }
 }
 
