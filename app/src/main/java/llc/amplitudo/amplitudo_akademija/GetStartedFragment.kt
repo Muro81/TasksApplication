@@ -26,7 +26,7 @@ class GetStartedFragment : Fragment() {
     }
 
     /**
-     * [See](https://stackoverflow.com/questions/66119231/is-it-necessary-to-set-viewbinding-to-null-in-fragments-ondestroy)
+     * [See reason](https://stackoverflow.com/questions/66119231/is-it-necessary-to-set-viewbinding-to-null-in-fragments-ondestroy)
      */
     private fun clearBinding() {
         _binding = null
