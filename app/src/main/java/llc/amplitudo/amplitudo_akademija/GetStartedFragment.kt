@@ -12,10 +12,6 @@ class GetStartedFragment : Fragment() {
     private var _binding: FragmentGetStartedBinding? = null
     private val binding: FragmentGetStartedBinding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
