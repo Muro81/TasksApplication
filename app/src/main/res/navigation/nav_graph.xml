@@ -8,10 +8,21 @@
         android:id="@+id/getStartedFragment"
         android:name="llc.amplitudo.amplitudo_akademija.GetStartedFragment"
         android:label="GetStartedFragment"
-        tools:layout="@layout/fragment_get_started"/>
+        tools:layout="@layout/fragment_get_started">
+        <action
+            android:id="@+id/action_getStartedFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="llc.amplitudo.amplitudo_akademija.DashboardFragment"
         android:label="DashboardFragment"
-        tools:layout="@layout/fragment_dashboard"/>
+        tools:layout="@layout/fragment_dashboard">
+        <argument
+            android:name="testArgument"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 </navigation>

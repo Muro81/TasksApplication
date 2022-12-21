@@ -22,9 +22,20 @@ class GetStartedFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.getStartedButton.setOnClickListener { navigateToDashboardFragment() }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         clearBinding()
+    }
+
+    private fun navigateToDashboardFragment() {
+        val action =
+            GetStartedFragmentDirections.actionGetStartedFragmentToDashboardFragment(testArgument = 10)
+        findNavController().navigate(action)
     }
 
     /**

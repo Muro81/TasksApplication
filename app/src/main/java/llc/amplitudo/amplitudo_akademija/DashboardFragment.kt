@@ -5,10 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentDashboardBinding
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentGetStartedBinding
+import timber.log.Timber
 
 class DashboardFragment : Fragment() {
+
+    val args: DashboardFragmentArgs by navArgs()
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding: FragmentDashboardBinding get() = _binding!!
@@ -20,6 +25,12 @@ class DashboardFragment : Fragment() {
     ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val testArgument = args.testArgument
+        Toast.makeText(requireActivity(), "Test argument value is:$testArgument ", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

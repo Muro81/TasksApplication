@@ -14,9 +14,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         Timber.d("Activity is being created...")
+        super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        super.onCreate(savedInstanceState)
         Timber.plant(Timber.DebugTree())
         /**
          * Changes color of status bar.
