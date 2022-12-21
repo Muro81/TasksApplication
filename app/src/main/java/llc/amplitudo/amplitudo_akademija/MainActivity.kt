@@ -1,16 +1,19 @@
 package llc.amplitudo.amplitudo_akademija
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import llc.amplitudo.amplitudo_akademija.databinding.ActivityMainBinding
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
+        Timber.d("Activity is being created...")
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         super.onCreate(savedInstanceState)
@@ -19,16 +22,11 @@ class MainActivity : AppCompatActivity() {
          * Changes color of status bar.
          */
         window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.purple)
-        Timber.d("Activity is being created...")
+        initNavigation()
     }
 
     override fun onStart() {
         super.onStart()
-        binding.apply {
-            getStartedButton.setOnClickListener {
-
-            }
-        }
         Timber.d("Activity is starting...")
     }
 
@@ -55,6 +53,12 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Timber.d("Activity is being destroyed...")
+    }
+
+    private fun initNavigation() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
     }
 }
 

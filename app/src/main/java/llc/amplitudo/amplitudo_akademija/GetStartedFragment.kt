@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentGetStartedBinding
 
 class GetStartedFragment : Fragment() {
@@ -13,7 +14,8 @@ class GetStartedFragment : Fragment() {
     private val binding: FragmentGetStartedBinding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGetStartedBinding.inflate(inflater, container, false)
