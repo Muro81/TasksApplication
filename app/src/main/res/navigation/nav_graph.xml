@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/getStartedFragment">
+    app:startDestination="@id/recyclerViewFragment">
     <fragment
         android:id="@+id/getStartedFragment"
         android:name="llc.amplitudo.amplitudo_akademija.GetStartedFragment"
@@ -25,4 +25,9 @@
             android:defaultValue="-1"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/recyclerViewFragment"
+        android:name="llc.amplitudo.amplitudo_akademija.RecyclerViewFragment"
+        android:label="fragment_recycler_view"
+        tools:layout="@layout/fragment_recycler_view" />
 </navigation>
