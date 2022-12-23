@@ -43,16 +43,7 @@ class RecyclerViewFragment : Fragment() {
             ),
             User(
                 "milos__"
-            ),
-            User(
-                "aaa"
-            ),
-            User(
-                "dsa"
-            ),
-            User(
-                "vgdsgsd"
-            ),
+            )
         )
         val userAdapter = UserAdapter(users = users) { user ->
             Timber.d("Detected click!")
