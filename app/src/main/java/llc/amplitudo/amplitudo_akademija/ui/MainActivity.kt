@@ -1,10 +1,13 @@
-package llc.amplitudo.amplitudo_akademija
+package llc.amplitudo.amplitudo_akademija.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import llc.amplitudo.amplitudo_akademija.R
 import llc.amplitudo.amplitudo_akademija.databinding.ActivityMainBinding
 import timber.log.Timber
 
@@ -12,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var bottomNavigationView: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         Timber.d("Activity is being created...")
         super.onCreate(savedInstanceState)
@@ -59,6 +63,8 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        bottomNavigationView = binding.bottomNavigation
+        bottomNavigationView.setupWithNavController(navController)
     }
 }
 

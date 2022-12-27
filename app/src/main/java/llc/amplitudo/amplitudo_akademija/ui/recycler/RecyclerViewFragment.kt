@@ -1,15 +1,16 @@
-package llc.amplitudo.amplitudo_akademija
+package llc.amplitudo.amplitudo_akademija.ui.recycler
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import llc.amplitudo.amplitudo_akademija.databinding.FragmentGetStartedBinding
+import llc.amplitudo.amplitudo_akademija.data.local.models.User
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentRecyclerViewBinding
+import llc.amplitudo.amplitudo_akademija.ui.dashboard.DashboardViewModel
 import timber.log.Timber
 
 class RecyclerViewFragment : Fragment() {
@@ -18,6 +19,7 @@ class RecyclerViewFragment : Fragment() {
     private val binding: FragmentRecyclerViewBinding get() = _binding!!
 
     private lateinit var userRecyclerView: RecyclerView
+    private val viewModel: RecyclerViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,19 +32,24 @@ class RecyclerViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val users = arrayListOf(
             User(
-                "dzenan__"
+                username = "dzenan__",
+                imageUrl = "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png"
             ),
             User(
-                "danilo__"
+                username = "danilo__",
+                imageUrl = "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png"
             ),
             User(
-                "mirza__"
+                username = "mirza__",
+                imageUrl = "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png"
             ),
             User(
-                "luka__"
+                username = "luka__",
+                imageUrl = "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png"
             ),
             User(
-                "milos__"
+                username = "milos__",
+                imageUrl = "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png"
             )
         )
         val userAdapter = UserAdapter(users = users) { user ->

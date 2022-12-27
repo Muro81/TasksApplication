@@ -1,9 +1,12 @@
-package llc.amplitudo.amplitudo_akademija
+package llc.amplitudo.amplitudo_akademija.ui.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import llc.amplitudo.amplitudo_akademija.R
+import llc.amplitudo.amplitudo_akademija.data.local.models.User
 import llc.amplitudo.amplitudo_akademija.databinding.RecyclerItemBinding
 import timber.log.Timber
 
@@ -17,9 +20,21 @@ class UserAdapter(
         val onUserClick: (position: User) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
-            binding.username.text = user.username
-            binding.root.setOnClickListener {
-                onUserClick(user)
+            binding.apply {
+                username.text = user.username
+                Timber.d("URL of users image is: ${user.imageUrl}")
+                Glide.with(binding.root.context)
+                    .load(user.imageUrl)
+                    .into(userImage)
+                    .onLoadStarted(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.user_placeholder
+                        )
+                    )
+                root.setOnClickListener {
+                    onUserClick(user)
+                }
             }
         }
     }

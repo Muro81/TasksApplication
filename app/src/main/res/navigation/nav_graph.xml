@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/recyclerViewFragment">
+    app:startDestination="@id/dashboardFragment">
     <fragment
         android:id="@+id/getStartedFragment"
-        android:name="llc.amplitudo.amplitudo_akademija.GetStartedFragment"
+        android:name="llc.amplitudo.amplitudo_akademija.ui.get_started.GetStartedFragment"
         android:label="GetStartedFragment"
         tools:layout="@layout/fragment_get_started">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="llc.amplitudo.amplitudo_akademija.DashboardFragment"
+        android:name="llc.amplitudo.amplitudo_akademija.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard">
         <argument
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/recyclerViewFragment"
-        android:name="llc.amplitudo.amplitudo_akademija.RecyclerViewFragment"
+        android:name="llc.amplitudo.amplitudo_akademija.ui.recycler.RecyclerViewFragment"
         android:label="fragment_recycler_view"
         tools:layout="@layout/fragment_recycler_view" />
 </navigation>
