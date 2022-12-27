@@ -33,7 +33,6 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val testArgument = args.testArgument
         Toast.makeText(requireActivity(), "Test argument value is:$testArgument ", Toast.LENGTH_LONG).show()
-        viewModel.test()
     }
 
     override fun onDestroyView() {
