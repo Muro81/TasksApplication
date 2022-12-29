@@ -1,22 +1,6 @@
 <resources>
     <string name="app_name">AmplitudoAkademija</string>
-    <string name="be_aware">Be aware\nStay healthy</string>
-    <string name="welcome">Welcome to COVID-19 information portal.</string>
-    <string name="get_started">Get Started</string>
-    <string name="safety_tips">Know safety tips and\nprecautions from\ntop Doctors.</string>
-    <string name="tracker">Tracker</string>
-    <string name="symptoms">Symptoms</string>
-    <string name="country">Country</string>
-    <string name="state">State</string>
-    <string name="city">City</string>
-    <string name="worldwide">Worldwide</string>
-    <string name="confirmed">Confirmed</string>
-    <string name="active">Active</string>
-    <string name="recovered">Recovered</string>
-    <string name="deceased">Deceased</string>
-    <string name="spread_trends">Spread Trends</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dashboard">Dashboard</string>
-    <string name="recycler">Recycler</string>
+    <string name="all_tasks">All Tasks</string>
+    <string name="done">Done</string>
+    <string name="to_do">To Do</string>
 </resources>

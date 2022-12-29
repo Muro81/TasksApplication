@@ -1,38 +1,31 @@
-package llc.amplitudo.amplitudo_akademija.ui.dashboard
+package llc.amplitudo.amplitudo_akademija.ui.done_tasks
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
-import llc.amplitudo.amplitudo_akademija.databinding.FragmentDashboardBinding
+import androidx.navigation.fragment.findNavController
+import llc.amplitudo.amplitudo_akademija.databinding.FragmentDoneTasksBinding
 
-class DashboardFragment : Fragment() {
+class DoneTasksFragment : Fragment() {
 
-    private val args: DashboardFragmentArgs by navArgs()
+    private var _binding: FragmentDoneTasksBinding? = null
+    private val binding: FragmentDoneTasksBinding get() = _binding!!
 
-    private var _binding: FragmentDashboardBinding? = null
-    private val binding: FragmentDashboardBinding get() = _binding!!
-
-    private val viewModel: DashboardViewModel by viewModels()
-
+    private val viewModel: DoneTasksViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentDoneTasksBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val testArgument = args.testArgument
-        Toast.makeText(requireActivity(), "Test argument value is:$testArgument ", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

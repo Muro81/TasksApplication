@@ -3,31 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboardFragment">
+    app:startDestination="@id/fragmentAllTasks">
     <fragment
-        android:id="@+id/getStartedFragment"
-        android:name="llc.amplitudo.amplitudo_akademija.ui.get_started.GetStartedFragment"
+        android:id="@+id/fragmentAllTasks"
+        android:name="llc.amplitudo.amplitudo_akademija.ui.dashboard.AllTasksFragment"
+        android:label="AllTasksFragment"
+        tools:layout="@layout/fragment_all_tasks" />
+    <fragment
+        android:id="@+id/doneFragment"
+        android:name="llc.amplitudo.amplitudo_akademija.ui.done_tasks.DoneTasksFragment"
         android:label="GetStartedFragment"
-        tools:layout="@layout/fragment_get_started">
-        <action
-            android:id="@+id/action_getStartedFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out" />
-    </fragment>
+        tools:layout="@layout/fragment_done_tasks" />
     <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="llc.amplitudo.amplitudo_akademija.ui.dashboard.DashboardFragment"
-        android:label="DashboardFragment"
-        tools:layout="@layout/fragment_dashboard">
-        <argument
-            android:name="testArgument"
-            android:defaultValue="-1"
-            app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/recyclerViewFragment"
-        android:name="llc.amplitudo.amplitudo_akademija.ui.recycler.RecyclerViewFragment"
-        android:label="fragment_recycler_view"
-        tools:layout="@layout/fragment_recycler_view" />
+        android:id="@+id/todoTaskFragment"
+        android:name="llc.amplitudo.amplitudo_akademija.ui.todo_tasks.TodoTasksFragment"
+        android:label="TodoTaskFragment"
+        tools:layout="@layout/fragment_todo_tasks" />
 </navigation>

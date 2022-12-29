@@ -1,4 +1,4 @@
-package llc.amplitudo.amplitudo_akademija.ui.recycler
+package llc.amplitudo.amplitudo_akademija.ui.todo_tasks
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,22 +9,22 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import llc.amplitudo.amplitudo_akademija.data.local.models.User
-import llc.amplitudo.amplitudo_akademija.databinding.FragmentRecyclerViewBinding
-import llc.amplitudo.amplitudo_akademija.ui.dashboard.DashboardViewModel
+import llc.amplitudo.amplitudo_akademija.databinding.FragmentTodoTasksBinding
+import llc.amplitudo.amplitudo_akademija.ui.adapters.TaskAdapter
 import timber.log.Timber
 
-class RecyclerViewFragment : Fragment() {
+class TodoTasksFragment : Fragment() {
 
-    private var _binding: FragmentRecyclerViewBinding? = null
-    private val binding: FragmentRecyclerViewBinding get() = _binding!!
+    private var _binding: FragmentTodoTasksBinding? = null
+    private val binding: FragmentTodoTasksBinding get() = _binding!!
 
     private lateinit var userRecyclerView: RecyclerView
-    private val viewModel: RecyclerViewModel by viewModels()
+    private val viewModel: TodoTasksViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
+        _binding = FragmentTodoTasksBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -52,15 +52,15 @@ class RecyclerViewFragment : Fragment() {
                 imageUrl = "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png"
             )
         )
-        val userAdapter = UserAdapter(users = users) { user ->
+        val userAdapter = TaskAdapter(users = users) { user ->
             Timber.d("Detected click!")
             val position = users.indexOf(user)
             users.remove(user)
             userRecyclerView.adapter?.notifyItemRemoved(position)
         }
-        userRecyclerView = binding.userRecycler
+        userRecyclerView = binding.taskRecycler
         userRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@RecyclerViewFragment.context)
+            layoutManager = LinearLayoutManager(this@TodoTasksFragment.context)
             adapter = userAdapter
         }
     }
