@@ -6,9 +6,15 @@
     app:startDestination="@id/fragmentAllTasks">
     <fragment
         android:id="@+id/fragmentAllTasks"
-        android:name="llc.amplitudo.amplitudo_akademija.ui.dashboard.AllTasksFragment"
+        android:name="llc.amplitudo.amplitudo_akademija.ui.all_tasks.AllTasksFragment"
         android:label="AllTasksFragment"
-        tools:layout="@layout/fragment_all_tasks" />
+        tools:layout="@layout/fragment_all_tasks">
+        <action
+            android:id="@+id/action_fragmentAllTasks_to_addTaskFragment"
+            app:destination="@id/addTaskFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/doneFragment"
         android:name="llc.amplitudo.amplitudo_akademija.ui.done_tasks.DoneTasksFragment"
@@ -19,4 +25,8 @@
         android:name="llc.amplitudo.amplitudo_akademija.ui.todo_tasks.TodoTasksFragment"
         android:label="TodoTaskFragment"
         tools:layout="@layout/fragment_todo_tasks" />
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="llc.amplitudo.amplitudo_akademija.ui.add_task.AddTaskFragment"
+        android:label="AddTaskFragment" />
 </navigation>

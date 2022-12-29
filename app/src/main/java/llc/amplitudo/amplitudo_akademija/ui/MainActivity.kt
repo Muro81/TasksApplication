@@ -3,6 +3,8 @@ package llc.amplitudo.amplitudo_akademija.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -64,6 +66,11 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         bottomNavigationView = binding.bottomNavigation
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val addTaskFragmentId = R.id.addTaskFragment
+            if (destination.id == addTaskFragmentId) binding.bottomBar.isInvisible = true
+            else binding.bottomBar.isVisible = true
+        }
         bottomNavigationView.setupWithNavController(navController)
     }
 }

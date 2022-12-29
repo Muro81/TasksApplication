@@ -3,33 +3,30 @@ package llc.amplitudo.amplitudo_akademija.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import llc.amplitudo.amplitudo_akademija.data.local.models.User
+import llc.amplitudo.amplitudo_akademija.data.local.models.Task
 import llc.amplitudo.amplitudo_akademija.databinding.TodoItemBinding
-import timber.log.Timber
 
 class TaskAdapter(
-    private val users: ArrayList<User>,
-    private val onUserClick: (position: User) -> Unit
+    private val tasks: ArrayList<Task>,
+    private val isAllTasks: Boolean = false,
+    private val onTaskClick: ((task: Task) -> Unit)? = null
 ) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
     class ViewHolder(
         private val binding: TodoItemBinding,
-        val onUserClick: (position: User) -> Unit
+        private val isAllTasks: Boolean = false,
+        private val onTaskClick: ((task: Task) -> Unit)? = null
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: User) {
+        fun bind(task: Task) {
             binding.apply {
-                Timber.d("URL of users image is: ${user.imageUrl}")
-//                Glide.with(binding.root.context)
-//                    .load(user.imageUrl)
-//                    .into(userImage)
-//                    .onLoadStarted(
-//                        ContextCompat.getDrawable(
-//                            binding.root.context,
-//                            R.drawable.user_placeholder
-//                        )
-//                    )
-                root.setOnClickListener {
-                    onUserClick(user)
+                todoCheckBox.isChecked = task.isDone
+                todoCheckBox.text = task.taskDescription
+                todoCheckBox.isClickable =
+                    if (isAllTasks) false else !task.isDone
+                onTaskClick?.let { taskCallback ->
+                    todoCheckBox.setOnClickListener {
+                        taskCallback(task)
+                    }
                 }
             }
         }
@@ -41,13 +38,15 @@ class TaskAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ), onUserClick = onUserClick
+            ),
+            onTaskClick = onTaskClick,
+            isAllTasks = isAllTasks
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(user = users[position])
+        holder.bind(task = tasks[position])
     }
 
-    override fun getItemCount() = users.size
+    override fun getItemCount() = tasks.size
 }
