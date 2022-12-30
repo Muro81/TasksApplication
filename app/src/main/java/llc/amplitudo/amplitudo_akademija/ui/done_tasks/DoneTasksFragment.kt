@@ -5,14 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import llc.amplitudo.amplitudo_akademija.R
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentDoneTasksBinding
 import llc.amplitudo.amplitudo_akademija.ui.adapters.TaskAdapter
-import timber.log.Timber
 
 class DoneTasksFragment : Fragment() {
 

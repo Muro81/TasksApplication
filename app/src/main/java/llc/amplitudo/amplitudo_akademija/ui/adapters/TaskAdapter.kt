@@ -8,7 +8,6 @@ import llc.amplitudo.amplitudo_akademija.databinding.TodoItemBinding
 
 class TaskAdapter(
     private val tasks: ArrayList<Task>,
-    private val isAllTasks: Boolean = false,
     private val onTaskClick: ((task: Task) -> Unit)? = null
 ) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
@@ -21,8 +20,7 @@ class TaskAdapter(
             binding.apply {
                 todoCheckBox.isChecked = task.isDone
                 todoCheckBox.text = task.taskDescription
-                todoCheckBox.isClickable =
-                    if (isAllTasks) false else !task.isDone
+                todoCheckBox.isClickable = !task.isDone
                 onTaskClick?.let { taskCallback ->
                     todoCheckBox.setOnClickListener {
                         taskCallback(task)
@@ -39,8 +37,7 @@ class TaskAdapter(
                 parent,
                 false
             ),
-            onTaskClick = onTaskClick,
-            isAllTasks = isAllTasks
+            onTaskClick = onTaskClick
         )
     }
 

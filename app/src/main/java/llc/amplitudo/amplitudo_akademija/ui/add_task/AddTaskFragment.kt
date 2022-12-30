@@ -8,13 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import llc.amplitudo.amplitudo_akademija.R
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentAddTaskBinding
-import llc.amplitudo.amplitudo_akademija.databinding.FragmentAllTasksBinding
-import llc.amplitudo.amplitudo_akademija.ui.all_tasks.AllTasksViewModel
 
 class AddTaskFragment : Fragment() {
 

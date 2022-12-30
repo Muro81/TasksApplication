@@ -5,15 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import llc.amplitudo.amplitudo_akademija.R
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentAllTasksBinding
 import llc.amplitudo.amplitudo_akademija.ui.adapters.TaskAdapter
-import timber.log.Timber
 
 class AllTasksFragment : Fragment() {
 
@@ -64,7 +61,7 @@ class AllTasksFragment : Fragment() {
     }
 
     private fun initTaskRecycler() {
-        val taskAdapter = TaskAdapter(tasks = viewModel.tasksList, isAllTasks = true)
+        val taskAdapter = TaskAdapter(tasks = viewModel.tasksList)
         tasksRecyclerView = binding.tasksRecyclerView
         tasksRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@AllTasksFragment.context)
