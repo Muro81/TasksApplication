@@ -61,7 +61,7 @@ class AllTasksFragment : Fragment() {
     }
 
     private fun initTaskRecycler() {
-        val taskAdapter = TaskAdapter(tasks = viewModel.tasksList)
+        val taskAdapter = TaskAdapter(tasks = viewModel.tasksList, isAllTasks = true)
         tasksRecyclerView = binding.tasksRecyclerView
         tasksRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@AllTasksFragment.context)
