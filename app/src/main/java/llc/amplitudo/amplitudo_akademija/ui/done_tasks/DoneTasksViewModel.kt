@@ -1,8 +1,8 @@
 package llc.amplitudo.amplitudo_akademija.ui.done_tasks
 
 import androidx.lifecycle.ViewModel
-import llc.amplitudo.amplitudo_akademija.data.local.models.Task
-import llc.amplitudo.amplitudo_akademija.data.local.repos.TaskRepository
+import llc.amplitudo.amplitudo_akademija.data.remote.models.Task
+import llc.amplitudo.amplitudo_akademija.data.remote.repos.TaskRepository
 
 class DoneTasksViewModel : ViewModel() {
 
@@ -10,10 +10,10 @@ class DoneTasksViewModel : ViewModel() {
 
     var doneTasksList: ArrayList<Task> = arrayListOf()
     private fun getDoneTasks() {
-        val retrievedTasks = taskRepository.getTasks().filter { task -> task.isDone }
-        retrievedTasks.forEach { task ->
-            doneTasksList.add(task)
-        }
+//        val retrievedTasks = taskRepository.getTasks().filter { task -> task.isDone }
+//        retrievedTasks.forEach { task ->
+//            doneTasksList.add(task)
+//        }
     }
 
     init {

@@ -1,7 +1,7 @@
 package llc.amplitudo.amplitudo_akademija.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -11,7 +11,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import llc.amplitudo.amplitudo_akademija.R
 import llc.amplitudo.amplitudo_akademija.databinding.ActivityMainBinding
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,5 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
         bottomNavigationView.setupWithNavController(navController)
     }
+
+
 }
 

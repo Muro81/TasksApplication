@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.flow.collectLatest
+import llc.amplitudo.amplitudo_akademija.data.remote.models.Task
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentAllTasksBinding
 import llc.amplitudo.amplitudo_akademija.ui.adapters.TaskAdapter
 
@@ -19,6 +23,8 @@ class AllTasksFragment : Fragment() {
 
     private val viewModel: AllTasksViewModel by viewModels()
     private lateinit var tasksRecyclerView: RecyclerView
+    private var taskAdapter: TaskAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,7 +36,7 @@ class AllTasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initTaskRecycler()
+        viewModel.getTasks()
         binding.fab.setOnClickListener {
             navigateToAddTask()
         }
@@ -46,6 +52,18 @@ class AllTasksFragment : Fragment() {
 //                    R.drawable.user_placeholder
 //                )
 //            )
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.tasksSharedFlow.collectLatest { tasks ->
+                initTaskRecycler(tasks = tasks)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.errorMessageFlow.collectLatest { message ->
+                Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -60,8 +78,8 @@ class AllTasksFragment : Fragment() {
         _binding = null
     }
 
-    private fun initTaskRecycler() {
-        val taskAdapter = TaskAdapter(tasks = viewModel.tasksList, isAllTasks = true)
+    private fun initTaskRecycler(tasks: List<Task>) {
+        taskAdapter = TaskAdapter(tasks = tasks, isAllTasks = true)
         tasksRecyclerView = binding.tasksRecyclerView
         tasksRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@AllTasksFragment.context)

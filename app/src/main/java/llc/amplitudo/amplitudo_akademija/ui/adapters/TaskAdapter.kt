@@ -3,11 +3,11 @@ package llc.amplitudo.amplitudo_akademija.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import llc.amplitudo.amplitudo_akademija.data.local.models.Task
+import llc.amplitudo.amplitudo_akademija.data.remote.models.Task
 import llc.amplitudo.amplitudo_akademija.databinding.TodoItemBinding
 
 class TaskAdapter(
-    private val tasks: ArrayList<Task>,
+    private val tasks: List<Task>,
     private val isAllTasks: Boolean = false,
     private val onTaskClick: ((task: Task) -> Unit)? = null
 ) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
@@ -19,10 +19,11 @@ class TaskAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             binding.apply {
-                todoCheckBox.isChecked = task.isDone
-                todoCheckBox.text = task.taskDescription
+                val isCompleted = task.isCompleted ?: false
+                todoCheckBox.isChecked = isCompleted
+                todoCheckBox.text = task.title ?: "No Info"
                 todoCheckBox.isClickable =
-                    if (isAllTasks) false else !task.isDone
+                    if (isAllTasks) false else isCompleted
                 onTaskClick?.let { taskCallback ->
                     todoCheckBox.setOnClickListener {
                         taskCallback(task)

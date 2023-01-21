@@ -12,7 +12,7 @@ plugins {
     id 'com.google.dagger.hilt.android' version '2.44' apply false
 }
 
-ext{
+ext {
     fragment_version = "1.5.5"
     core_version = "1.7.0"
     app_compat_version = "1.5.1"
@@ -21,4 +21,7 @@ ext{
     hilt_version = "2.44"
     timber_version = "5.0.1"
     glide_version = "4.14.2"
+    coroutines_version = "1.6.4"
+    retrofit_version = "2.9.0"
+    okhttp3_version = "4.9.0"
 }
