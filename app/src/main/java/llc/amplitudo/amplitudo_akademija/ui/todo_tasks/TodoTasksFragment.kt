@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.flow.collectLatest
 import llc.amplitudo.amplitudo_akademija.R
+import llc.amplitudo.amplitudo_akademija.data.remote.models.Task
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentTodoTasksBinding
 import llc.amplitudo.amplitudo_akademija.ui.adapters.TaskAdapter
 import timber.log.Timber
@@ -21,6 +24,7 @@ class TodoTasksFragment : Fragment() {
 
     private lateinit var tasksRecyclerView: RecyclerView
     private val viewModel: TodoTasksViewModel by viewModels()
+    private var taskAdapter : TaskAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +35,19 @@ class TodoTasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initTaskRecycler()
+        viewModel.getTodoTasks()
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.toDoTasksSharedFlow.collectLatest { tasks ->
+                binding.loadingAnimation.visibility = View.GONE
+                initTaskRecycler(tasks = tasks)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.errorMessageFlow.collectLatest { message ->
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -46,11 +62,11 @@ class TodoTasksFragment : Fragment() {
         _binding = null
     }
 
-    private fun initTaskRecycler() {
-        val taskAdapter = TaskAdapter(tasks = viewModel.todoTasksList) { task ->
+    private fun initTaskRecycler(tasks: List<Task>) {
+        taskAdapter = TaskAdapter(tasks = tasks) { task ->
             Timber.d("Detected click!")
-            val position = viewModel.todoTasksList.indexOf(task)
-            viewModel.todoTasksList.remove(task)
+            val position = tasks.indexOf(task)
+            //viewModel.todoTasksList.remove(task) // da li nam ovo treba uopste?
             tasksRecyclerView.adapter?.notifyItemRemoved(position)
             Toast.makeText(
                 this@TodoTasksFragment.context,

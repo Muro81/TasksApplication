@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.flow.collectLatest
+import llc.amplitudo.amplitudo_akademija.data.remote.models.Task
 import llc.amplitudo.amplitudo_akademija.databinding.FragmentDoneTasksBinding
 import llc.amplitudo.amplitudo_akademija.ui.adapters.TaskAdapter
 
@@ -18,6 +22,7 @@ class DoneTasksFragment : Fragment() {
 
     private val viewModel: DoneTasksViewModel by viewModels()
     private lateinit var tasksRecyclerView: RecyclerView
+    private var taskAdapter : TaskAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,7 +34,21 @@ class DoneTasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initTaskRecycler()
+        viewModel.getDoneTasks()
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.donetasksSharedFlow.collectLatest{ tasks->
+                binding.loadingAnimation.visibility = View.GONE
+                initTaskRecycler(tasks = tasks)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.errorMessaggeFlow.collectLatest { message ->
+                Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -44,8 +63,8 @@ class DoneTasksFragment : Fragment() {
         _binding = null
     }
 
-    private fun initTaskRecycler() {
-        val taskAdapter = TaskAdapter(tasks = viewModel.doneTasksList)
+    private fun initTaskRecycler(tasks: List<Task>) {
+        taskAdapter = TaskAdapter(tasks = tasks)
         tasksRecyclerView = binding.tasksRecyclerView
         tasksRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@DoneTasksFragment.context)

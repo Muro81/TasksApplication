@@ -25,8 +25,11 @@ class AllTasksViewModel : ViewModel() {
     // The UI collects from this StateFlow to get its state updates
     val tasksSharedFlow: SharedFlow<List<Task>> = _tasksSharedFlow
 
+
     private val _errorMessageChannel = Channel<String>()
     val errorMessageFlow: Flow<String> = _errorMessageChannel.receiveAsFlow()
+
+
 
     fun getTasks() {
         viewModelScope.launch {
@@ -44,6 +47,7 @@ class AllTasksViewModel : ViewModel() {
                         }
                     }
                     is NetworkResponse.Loading -> {
+
                         Timber.d("Presenting loader to user...")
                     }
                 }

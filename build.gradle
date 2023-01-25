@@ -24,4 +24,5 @@ ext {
     coroutines_version = "1.6.4"
     retrofit_version = "2.9.0"
     okhttp3_version = "4.9.0"
+    lottie_version = "3.4.0"
 }

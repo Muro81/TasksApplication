@@ -55,6 +55,7 @@ class AllTasksFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.tasksSharedFlow.collectLatest { tasks ->
+                binding.loadingAnimation.visibility = View.GONE // hides the loading animation
                 initTaskRecycler(tasks = tasks)
             }
         }
@@ -91,4 +92,7 @@ class AllTasksFragment : Fragment() {
         val action = AllTasksFragmentDirections.actionFragmentAllTasksToAddTaskFragment()
         findNavController().navigate(action)
     }
+
+
+
 }
