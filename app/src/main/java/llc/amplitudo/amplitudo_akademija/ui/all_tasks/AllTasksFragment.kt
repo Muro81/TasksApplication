@@ -52,10 +52,16 @@ class AllTasksFragment : Fragment() {
 //                    R.drawable.user_placeholder
 //                )
 //            )
-
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.loadingMessageFlow.collectLatest { message ->
+                if(message){
+                    binding.loadingAnimation.visibility = View.VISIBLE
+                }
+                else binding.loadingAnimation.visibility = View.GONE
+            }
+        }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.tasksSharedFlow.collectLatest { tasks ->
-                binding.loadingAnimation.visibility = View.GONE // hides the loading animation
                 initTaskRecycler(tasks = tasks)
             }
         }

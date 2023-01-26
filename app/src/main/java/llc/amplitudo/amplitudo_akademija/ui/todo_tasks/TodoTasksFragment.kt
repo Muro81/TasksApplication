@@ -38,8 +38,15 @@ class TodoTasksFragment : Fragment() {
         viewModel.getTodoTasks()
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.loadingMessageFlow.collectLatest { message ->
+                if(message){
+                    binding.loadingAnimation.visibility = View.VISIBLE
+                }
+                else binding.loadingAnimation.visibility = View.GONE
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.toDoTasksSharedFlow.collectLatest { tasks ->
-                binding.loadingAnimation.visibility = View.GONE
                 initTaskRecycler(tasks = tasks)
             }
         }

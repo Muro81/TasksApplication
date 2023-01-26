@@ -21,26 +21,30 @@ class TodoTasksViewModel : ViewModel() {
     private val _errorMessageChannel = Channel<String>()
     val errorMessageFlow : Flow<String> = _errorMessageChannel.receiveAsFlow()
 
+    private val _loadingMessageChannel = Channel<Boolean>()
+    val loadingMessageFlow : Flow<Boolean> = _loadingMessageChannel.receiveAsFlow()
+
     fun getTodoTasks(){
         viewModelScope.launch {
             taskRepository.getTasks().collectLatest { networkResponse ->
-                val data = networkResponse.data?.filter{ task ->
-                    task.isCompleted == false
-                }
+                val data = networkResponse.data
                 when (networkResponse){
                     is NetworkResponse.Success -> {
-                        data?.let { tasks ->
-                            _toDoTasksSharedFlow.emit(data)
+                        data?.filter { task ->
+                            task.isCompleted == false
+                        }?.let { tasks ->
+                            _toDoTasksSharedFlow.emit(tasks)
                         }
-
+                        _loadingMessageChannel.send(false)
                     }
                     is NetworkResponse.Error -> {
                         networkResponse.message?.let { message ->
                             _errorMessageChannel.send(message)
                         }
+                        _loadingMessageChannel.send(false)
                     }
                     is NetworkResponse.Loading -> {
-
+                        _loadingMessageChannel.send(true)
                         Timber.d("Presenting loader to user...")
                     }
                 }

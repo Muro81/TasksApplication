@@ -14,33 +14,37 @@ class DoneTasksViewModel : ViewModel() {
 
     private val taskRepository = TaskRepository()
 
-    private val _donetasksSharedFlow = MutableSharedFlow<List<Task>>()
+    private val _doneTasksSharedFlow = MutableSharedFlow<List<Task>>()
 
-    val donetasksSharedFlow: SharedFlow<List<Task>> = _donetasksSharedFlow
+    val doneTasksSharedFlow: SharedFlow<List<Task>> = _doneTasksSharedFlow
 
     private val _errorMessageChannel = Channel<String>()
-    val errorMessaggeFlow: Flow<String> = _errorMessageChannel.receiveAsFlow()
+    val errorMessageFlow: Flow<String> = _errorMessageChannel.receiveAsFlow()
 
+    private val _loadingMessageChannel = Channel<Boolean>()
+    val loadingMessageFlow : Flow<Boolean> = _loadingMessageChannel.receiveAsFlow()
 
     fun getDoneTasks() {
         viewModelScope.launch {
             taskRepository.getTasks().collectLatest { networkResponse ->
-                val data = networkResponse.data?.filter { task ->
-                    task.isCompleted == true
-                }
+                val data = networkResponse.data
                 when (networkResponse) {
                     is NetworkResponse.Success -> {
-                        data?.let { tasks ->
-                            _donetasksSharedFlow.emit(tasks)
+                        data?.filter {  task ->
+                            task.isCompleted == true
+                        }?.let { tasks ->
+                            _doneTasksSharedFlow.emit(tasks)
                         }
+                        _loadingMessageChannel.send(false)
                     }
                     is NetworkResponse.Error -> {
                         networkResponse.message?.let { message ->
                             _errorMessageChannel.send(message)
                         }
+                        _loadingMessageChannel.send(false)
                     }
                     is NetworkResponse.Loading -> {
-
+                        _loadingMessageChannel.send(true)
                         Timber.d("Presenting loader to user...")
                     }
 

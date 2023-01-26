@@ -37,14 +37,21 @@ class DoneTasksFragment : Fragment() {
         viewModel.getDoneTasks()
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.donetasksSharedFlow.collectLatest{ tasks->
-                binding.loadingAnimation.visibility = View.GONE
+            viewModel.loadingMessageFlow.collectLatest { message ->
+                if(message){
+                    binding.loadingAnimation.visibility = View.VISIBLE
+                }
+                else binding.loadingAnimation.visibility = View.GONE
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.doneTasksSharedFlow.collectLatest{ tasks->
                 initTaskRecycler(tasks = tasks)
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.errorMessaggeFlow.collectLatest { message ->
+            viewModel.errorMessageFlow.collectLatest { message ->
                 Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
 
             }
